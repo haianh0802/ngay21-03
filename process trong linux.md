@@ -32,3 +32,15 @@ Tuy giải phóng bộ nhớ hoàn toàn nhưng các zombie process không bị 
 Để tìm các zombie process ta gõ kiểm tra trạng thái của tiến trình theo lệnh sau:
 
 ps -lA | grep '^. Z'
+
+# 2.4 Daemon Process
+Một Daemon Process là một tiến trình chạy nền. Nó sẽ luôn trong trạng thái hoạt động và sẽ được kích hoạt bởi một điều kiện hoặc câu lệnh nào đó. Trong Unix, các daemon thường được kết thúc bằng “d” ví dụ như httpd, sshd, crond, mysqld,…
+
+Chúng ta có thể chạy một đoạn script bash shell, python, java,… dưới dạng một daemon process bằng cách sử dụng dấu & ví dụ:
+
+./simpleshell.sh &
+
+Tuy nhiên, vấn đề ở đây là khi ta kết thúc phiên của terminal, tiến trình đó sẽ không có tiến trình cha và sẽ trở thành một orphan process. Để giải quyết vấn đề này, ta sẽ cho shell chạy với tư cách là tiến trình con của init process bằng cách dùng lệnh nohup như sau:
+
+nohup ./simpleshell.sh &
+
