@@ -44,3 +44,16 @@ Tuy nhiên, vấn đề ở đây là khi ta kết thúc phiên của terminal, 
 
 nohup ./simpleshell.sh &
 
+
+# 3. Bố trí bộ nhớ của Process
+Vùng nhớ được cấp phát cho process gồm các phân vùng (segment):
+
+Text segment: Bao gồm lệnh ngôn những máy của chương trình mà process chạy. Phân vùng này là read-only để không bị vô tình thay đổi bằng con trỏ khi lập trình. Do nhiều process có thể chạy cùng một chương trình, phân vùng này có thể chia sẻ để chỉ cần một bản copy code chương trình có thể được map tới không gian địa chỉ ảo của nhiều process khác nhau.
+
+Initialized data segment: gồm các biến toàn cục và biến tĩnh được khai báo tường minh. Những giá trị này được đọc từ file thực thi khi chương trình được load vào RAM.
+
+Uninitialized data segment: gồm những biến toàn cục và biến tĩnh không được khai báo tường minh. Trước khi chạy chương tình thì hệ thống sẽ đặt toàn bộ vùng nhớ này về giá trị 0.
+
+Stack: là phân vùng tự động tăng kích thước. Phân vùng này bao gồm các stack frame. Mỗi stack frame được cấp phát cho mỗi function được gọi, và nó lưu trữ những biến cục bộ của function, các argument và giá trị trả về.
+
+Heap: là vùng nhớ dùng cho việc cấp phát động ở runtime.
