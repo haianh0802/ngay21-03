@@ -127,6 +127,7 @@ Kiểm tra xem tomcat đã được khởi động chưa
 ![image](https://user-images.githubusercontent.com/101684058/159619280-ec1e4779-5427-401a-8ab5-70ed77f9a1fc.png)
 
 ![image](https://user-images.githubusercontent.com/101684058/159619495-7493c748-f567-429e-b0e6-b7091babda32.png)
+
 3.7 Kiểm tra
 Mở trình duyệt truy cập đường dẫn: Localhost:8080
 
