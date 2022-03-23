@@ -58,32 +58,79 @@ Khi bạn hiển thị như này tức là đã cài đặt thành công và ngi
 
 
 # Cài đặt Tomcat trên Ubuntu
+### Bước 1: Cài đặt JDK
+sudo apt-get install default-jdk
 
 ![image](https://user-images.githubusercontent.com/101684058/159615563-f0afa09c-0964-4749-aace-b4e68b85ef12.png)
+
+### Bước 2: Kiểm tra Java đã được cài đặt hay chưa
+Java -version
 
 
 ![image](https://user-images.githubusercontent.com/101684058/159615675-ecf4b881-0851-42d5-bf66-1ad5ce650cea.png)
 
+### Bước 3: Cài đặt tomcat
+3.1 Truy cập trang web https://tomcat.apache.org/
+
+![image](https://user-images.githubusercontent.com/101684058/159620545-87f694a5-779f-46a6-8fe5-7338ab614af9.png)
+
+Chọn Tomcat 9 => 9.0.60
+
+![image](https://user-images.githubusercontent.com/101684058/159620613-1a75873a-96e8-4cb8-bc07-bc97de36ef57.png)
+
+Nhấn chuột phải và chọn copy link
+
+3.2 Download gói cài đặt tomcat
 
 ![image](https://user-images.githubusercontent.com/101684058/159615980-0c263753-c3da-49c8-b60d-b8096c55b3d3.png)
+
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.60/bin/apache-tomcat-9.0.60.tar.gz
+
+3.3 Giải nén gói cài đặt vừa tải về
 
 
 ![image](https://user-images.githubusercontent.com/101684058/159616035-42a02e84-033c-4d65-a579-6e5bce4f6c79.png)
 
+tar -xzf apache-tomcat-9.0.60.tar.gz
+
+3.4 Di chuyển file đã giải nén vào thư mục tùy chọn
+Tạo thư mục: sudo mkdir /opt/tomcat
+
+Di chuyển các mục vào thư mục vừa tạo: mv apache-tomcat-9.0.60/* /opt/tomcat/
 
 ![image](https://user-images.githubusercontent.com/101684058/159616233-e5ee38aa-8d79-4784-b420-e53ae9918543.png)
 
+3.5 kiểm tra các tệp đã được chuyển đến thư mục chưa
+cd /opt/tomcat/
 
-![image](https://user-images.githubusercontent.com/101684058/159616287-9e48a33b-2f1c-4c2c-9f3b-b5d9e2245410.png)
+ls
 
 ![image](https://user-images.githubusercontent.com/101684058/159618400-f96ac38c-07ee-4a9d-b452-f5cd45462325.png)
 
+3.6 Tạo quản trị viên và trình quản lí:
+cd conf/
+
+ls
+
+Tạo quản trị viên và user
+
+sudo nano tomcat-users.xml
+
+Bổ sung user
+
 ![image](https://user-images.githubusercontent.com/101684058/159618498-c9e38f51-e4f2-4916-b629-36c2e2486376.png)
 
+Kiểm tra xem tomcat đã được khởi động chưa
+
+./startup.sh
 
 ![image](https://user-images.githubusercontent.com/101684058/159619280-ec1e4779-5427-401a-8ab5-70ed77f9a1fc.png)
 
 ![image](https://user-images.githubusercontent.com/101684058/159619495-7493c748-f567-429e-b0e6-b7091babda32.png)
+3.7 Kiểm tra
+Mở trình duyệt truy cập đường dẫn: Localhost:8080
+
+
 
 ![image](https://user-images.githubusercontent.com/101684058/159619622-7e1ce1a1-5206-4a60-ae23-1f50cd6e30a4.png)
 
