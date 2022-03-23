@@ -136,3 +136,85 @@ Mở trình duyệt truy cập đường dẫn: Localhost:8080
 ![image](https://user-images.githubusercontent.com/101684058/159619622-7e1ce1a1-5206-4a60-ae23-1f50cd6e30a4.png)
 
 
+# Cài đặt Lighttpd trên Ubuntu 20.04
+Lighttpd là một giải pháp thay thế rất phổ biến cho các máy chủ web phổ biến trên hệ điều hành họ Unix. Nhờ đó, Chúng ta có thể tìm thấy nó có sẵn thông qua các kho lưu trữ Ubuntu 20.04 chính. Do đó, để cài đặt nó trong Ubuntu 20.04, chúng ta sẽ chỉ phải mở một thiết bị đầu cuối (Ctrl + Alt + T) và thực hiện lệnh:
+
+sudo apt install lighttpd
+
+
+![image](https://user-images.githubusercontent.com/101684058/159663041-c9b205a3-445d-44ff-911b-4c673764068e.png)
+
+### Khởi động dịch vụ lighttpd
+
+sudo systemctl start lighttpd
+
+![image](https://user-images.githubusercontent.com/101684058/159663561-db1a86a3-9012-4f17-b9e9-d6e927d6ca22.png)
+
+
+### kiểm tra trạng thái dịch vụ lighttpd
+sudo systemctl status lighttpd
+
+![image](https://user-images.githubusercontent.com/101684058/159663630-5ba3855a-baba-4cd1-bb73-041477499f9b.png)
+
+### Vào trình duyệt, truy cập vào địa chỉ ip để kiểm tra
+
+![image](https://user-images.githubusercontent.com/101684058/159664798-321c8899-b7b2-4873-b689-05280e12c2ce.png)
+
+## Thêm hỗ trợ PHP vào Lighttpd
+Cài đặt php 7.4
+
+sudo apt install php7.4 php7.4-fpm php7.4-mysql php7.4-cli php7.4-curl php7.4-xml
+
+![image](https://user-images.githubusercontent.com/101684058/159665395-b4ccc507-c55c-4418-999c-bc89a2769792.png)
+
+
+## Mở rộng một trong những tệp cấu hình
+sudo nano /etc/php/7.4/fpm/pool.d/www.conf
+
+## Thay đổi giá trị listen thành 127.0.0.1:9000
+
+thực hiện nhiều thay đổi hơn đối với tệp cấu hình khác
+sudo nano /etc/lighttpd/conf-available/15-fastcgi-php.conf
+
+Thay đổi 2 dòng:
+
+"bin-path" => "/usr/bin/php-cgi",
+
+"socket" => "/var/run/lighttpd/php.socket",
+
+Thành:
+
+"host" => "127.0.0.1",
+
+"port" => "9000",
+
+![image](https://user-images.githubusercontent.com/101684058/159665534-0f94b26d-d37d-43e6-a672-81a4a9f37c25.png)
+
+## kích hoạt các mô-đun giúp Lighttpd hoạt động với PHP:
+sudo lighty-enable-mod fastcgi
+
+sudo lighty-enable-mod fastcgi-php
+
+![image](https://user-images.githubusercontent.com/101684058/159665755-8b004f77-60db-4649-9683-70b8b4fc4592.png)
+
+## khởi động lại các dịch vụ Lighttpd và php-fpm:
+Kiểm tra xem PHP đã được kích hoạt chưa
+chúng ta sẽ viết một tệp PHP trong thư mục gốc của Lighttpd, và sau đó mở nó bằng trình duyệt.
+sudo nano /var/www/html/test.php
+
+Bên trong tệp dán đoạn lệnh sau:
+
+![image](https://user-images.githubusercontent.com/101684058/159666421-3c647e23-e434-4db2-b1b2-60965048ec5b.png)
+
+## thay đổi quyền của thư mục và đặt Lighttpd làm chủ sở hữu của nó
+sudo chown -R www-data:www-data /var/www/html/
+
+sudo chown -R 755 /var/www/html/
+
+![image](https://user-images.githubusercontent.com/101684058/159666799-2e09f1ac-8b30-4149-a31e-7ca1b4bab7b0.png)
+
+Bây giờ chúng ta mở trình duyệt và truy cập vào đường dẫn để kiểm tra
+
+192.168.1.70/test.php
+
+
