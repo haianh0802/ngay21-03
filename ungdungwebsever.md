@@ -195,7 +195,8 @@ sudo lighty-enable-mod fastcgi
 
 sudo lighty-enable-mod fastcgi-php
 
-![image](https://user-images.githubusercontent.com/101684058/159665755-8b004f77-60db-4649-9683-70b8b4fc4592.png)
+![image](https://user-images.githubusercontent.com/101684058/159823502-1e6f0dc4-ca22-4045-9cd0-2eb0e1492e4b.png)
+
 
 ## khởi động lại các dịch vụ Lighttpd và php-fpm:
 Kiểm tra xem PHP đã được kích hoạt chưa
